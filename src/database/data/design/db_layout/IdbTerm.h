@@ -209,6 +209,13 @@ class IdbTerm
     _antenna_diff_area = area;
   }
 
+  // ANTENNAGATEAREA / ANTENNADIFFAREA with a LAYER qualifier: the area only applies when the net
+  // reaches the pin through that layer. The unqualified scalars above hold the unqualified sums.
+  void add_antenna_gate_area_layer(const string& layer, double area) { _antenna_gate_area_by_layer[layer] += area; }
+  const map<string, double>& get_antenna_gate_area_by_layer() const { return _antenna_gate_area_by_layer; }
+  void add_antenna_diff_area_layer(const string& layer, double area) { _antenna_diff_area_by_layer[layer] += area; }
+  const map<string, double>& get_antenna_diff_area_by_layer() const { return _antenna_diff_area_by_layer; }
+
   void add_antenna_partial_metal_area(const string& layer, double area) { _antenna_partial_metal_area[layer] += area; }
   const map<string, double>& get_antenna_partial_metal_area() const { return _antenna_partial_metal_area; }
   bool has_antenna_partial_metal_area() const { return !_antenna_partial_metal_area.empty(); }
@@ -276,6 +283,8 @@ class IdbTerm
   bool _has_antenna_diff_area = false;
   double _antenna_diff_area = 0.0;
 
+  map<string, double> _antenna_gate_area_by_layer;
+  map<string, double> _antenna_diff_area_by_layer;
   map<string, double> _antenna_partial_metal_area;
   map<string, double> _antenna_partial_metal_side_area;
   map<string, double> _antenna_partial_cut_area;

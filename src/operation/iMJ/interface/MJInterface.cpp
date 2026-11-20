@@ -17,6 +17,7 @@
 #include "MJInterface.hpp"
 
 #include "AntennaChecker.hpp"
+#include "AntennaRepairer.hpp"
 #include "DEFCutter.hpp"
 #include "DataManager.hpp"
 #include "DefFlattener.hpp"
@@ -90,6 +91,13 @@ void MJInterface::checkAntenna(std::map<std::string, std::any> config_map)
   AntennaChecker::initInst();
   MJAC.check(config_map);
   AntennaChecker::destroyInst();
+}
+
+void MJInterface::repairAntenna(std::map<std::string, std::any> config_map)
+{
+  AntennaRepairer::initInst();
+  MJAR.repair(config_map);
+  AntennaRepairer::destroyInst();
 }
 
 void MJInterface::flattenDef(std::map<std::string, std::any> config_map)

@@ -38,6 +38,7 @@ class AntennaChecker
 
   // function
   void check(std::map<std::string, std::any> config_map);
+  std::vector<ACViolation> checkAndCollect(std::map<std::string, std::any> config_map, bool write_outputs = false);
 
  private:
   // self
